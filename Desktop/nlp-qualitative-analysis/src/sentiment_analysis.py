@@ -5,7 +5,7 @@ Rule-based sentiment analysis for text data
 
 import pandas as pd
 import numpy as np
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Tuple
 import warnings
 
 warnings.filterwarnings('ignore')
