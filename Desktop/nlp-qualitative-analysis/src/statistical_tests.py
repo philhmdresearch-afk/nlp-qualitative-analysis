@@ -6,8 +6,24 @@ Chi-square tests and other statistical analyses for cluster/topic distributions
 import numpy as np
 import pandas as pd
 from typing import Dict, List, Tuple, Optional
-from scipy.stats import chi2_contingency, fisher_exact, cramers_v
+from scipy.stats import chi2_contingency, fisher_exact
 from scipy.stats import mannwhitneyu, kruskal
+
+
+def cramers_v(contingency_table: np.ndarray) -> float:
+    """
+    Calculate Cramér's V statistic for categorical association.
+    
+    Args:
+        contingency_table: 2D array of observed frequencies
+        
+    Returns:
+        Cramér's V value (0 to 1)
+    """
+    chi2 = chi2_contingency(contingency_table)[0]
+    n = contingency_table.sum()
+    min_dim = min(contingency_table.shape) - 1
+    return np.sqrt(chi2 / (n * min_dim)) if min_dim > 0 else 0.0
 import warnings
 
 warnings.filterwarnings('ignore')
