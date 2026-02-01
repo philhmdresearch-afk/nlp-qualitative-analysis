@@ -1,0 +1,77 @@
+# Hybrid Structured & Unstructured Data Analysis Tool
+# Energy-efficient design supporting both numeric/categorical and text data
+# All libraries are permissively licensed for commercial use
+# Total disk space: ~400MB | RAM usage: 2-6GB typical
+
+# Core Data Processing (BSD-3)
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0  # MIT - Excel file support
+
+# NLP and Text Processing
+nltk>=3.8.0  # Apache 2.0 - Lightweight NLP for unstructured text
+scikit-learn>=1.3.0  # BSD-3 - ML algorithms, TF-IDF, LDA, NMF, PCA, SVD
+
+# Advanced Clustering
+hdbscan>=0.8.33  # BSD-3 - Density-based clustering for both data types
+kmodes>=0.12.2  # MIT - k-modes/k-prototypes for categorical data
+umap-learn>=0.5.4  # BSD-3 - Dimensionality reduction for both data types
+
+# Distance Metrics for Mixed Data
+gower>=0.1.2  # BSD-3 - Gower distance for mixed numeric/categorical
+
+# Statistical Analysis
+scipy>=1.11.0  # BSD-3 - Statistical tests, hierarchical clustering
+statsmodels>=0.14.0  # BSD-3 - Advanced statistical modeling
+
+# Visualization
+matplotlib>=3.7.0  # PSF (permissive) - Static plots
+seaborn>=0.12.0  # BSD-3 - Statistical visualizations
+plotly>=5.17.0  # MIT - Interactive plots (lazy loaded)
+wordcloud>=1.9.0  # MIT - Word clouds for text analysis
+
+# Web Interface
+streamlit>=1.28.0  # Apache 2.0 - Interactive web app
+
+# Utilities
+tqdm>=4.66.0  # MIT - Progress bars
+joblib>=1.3.0  # BSD-3 - Caching and parallel processing
+
+# Development (Optional)
+jupyter>=1.0.0  # BSD-3
+pytest>=7.4.0  # MIT
+
+# ============================================================================
+# FEATURE COVERAGE BY DATA TYPE
+# ============================================================================
+#
+# STRUCTURED DATA (numeric/categorical):
+# - Scaling: StandardScaler, MinMaxScaler, RobustScaler (scikit-learn)
+# - Encoding: OneHotEncoder, TargetEncoder, OrdinalEncoder (scikit-learn)
+# - Distance: Euclidean, Manhattan, cosine (scipy), Gower for mixed (gower)
+# - Clustering: k-means, Gaussian Mixture, Ward hierarchical (scikit-learn)
+#              k-modes/k-prototypes for categorical (kmodes)
+#              HDBSCAN for density-based (hdbscan)
+# - Dimensionality: PCA, t-SNE (scikit-learn), UMAP (umap-learn)
+# - Evaluation: Silhouette, Davies-Bouldin, Calinski-Harabasz (scikit-learn)
+#
+# UNSTRUCTURED DATA (text):
+# - Preprocessing: Tokenization, lemmatization, stopwords (nltk)
+# - Vectorization: TF-IDF, BoW, CountVectorizer (scikit-learn)
+# - Distance: Cosine similarity (scipy), Jensen-Shannon (scipy)
+# - Clustering: Spherical k-means on TF-IDF (custom implementation)
+#              HDBSCAN on embeddings (hdbscan)
+#              Hierarchical with cosine (scipy)
+# - Topic Modeling: LDA, NMF (scikit-learn)
+# - Dimensionality: SVD/LSA (scikit-learn), UMAP (umap-learn)
+# - Evaluation: Topic coherence C_v, UMass, NPMI (custom implementation)
+# - Sentiment: VADER (nltk)
+#
+# ENERGY EFFICIENCY FEATURES:
+# - Sparse matrix operations for TF-IDF (10-100x memory reduction)
+# - Mini-batch algorithms for large datasets
+# - Lazy loading of heavy libraries
+# - Incremental processing with joblib caching
+# - Vectorized NumPy/SciPy operations
+# - Optional float32 precision (50% memory reduction)
+# ============================================================================
