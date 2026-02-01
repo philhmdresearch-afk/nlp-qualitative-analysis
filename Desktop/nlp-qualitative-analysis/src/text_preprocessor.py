@@ -175,8 +175,12 @@ class TextPreprocessor:
             tokens = [t for t in tokens if t.lower() not in stopwords_set]
         
         # Lemmatize if specified
-        if self.lemmatize:
-            tokens = [_lemmatizer.lemmatize(t) for t in tokens]
+        if self.lemmatize and _lemmatizer is not None:
+            try:
+                tokens = [_lemmatizer.lemmatize(t) for t in tokens]
+            except Exception as e:
+                # Fallback: skip lemmatization if it fails
+                print(f"Lemmatization skipped due to error: {e}")
         
         return tokens
     
