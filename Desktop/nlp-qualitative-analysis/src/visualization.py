@@ -46,7 +46,11 @@ class Visualizer:
         """
         self.style = style
         self.figsize = figsize
-        plt.style.use(style)
+        try:
+            plt.style.use(style)
+        except OSError:
+            # Fallback to default style if requested style not available
+            plt.style.use('default')
         
     def plot_distribution_bar(
         self,
