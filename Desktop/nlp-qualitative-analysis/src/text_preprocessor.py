@@ -25,18 +25,18 @@ def _ensure_nltk_resources():
         
         # Download required resources if not present
         required_resources = [
-            ('tokenizers/punkt', 'punkt'),
-            ('corpora/stopwords', 'stopwords'),
-            ('corpora/wordnet', 'wordnet'),
-            ('taggers/averaged_perceptron_tagger', 'averaged_perceptron_tagger')
+            'punkt_tab',  # New tokenizer format
+            'stopwords',
+            'wordnet',
+            'averaged_perceptron_tagger',
+            'omw-1.4'  # Open Multilingual Wordnet
         ]
         
-        for resource_path, resource_name in required_resources:
+        for resource_name in required_resources:
             try:
-                nltk.data.find(resource_path)
-            except LookupError:
-                print(f"Downloading NLTK resource: {resource_name}")
                 nltk.download(resource_name, quiet=True)
+            except Exception as e:
+                print(f"Note: Could not download {resource_name}: {e}")
         
         from nltk.corpus import stopwords
         from nltk.stem import WordNetLemmatizer
